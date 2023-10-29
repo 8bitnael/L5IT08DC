@@ -1,74 +1,48 @@
 <template>
-  <div class="container">
-    <b-card border-variant="dark" header="PREFERENCES">
-      <div>
-        <div>
-          <div>
-            <b-button
-              @click="addMenuItem(buttonText)"
-              v-for="(buttonText, index) in removedItems"
-              :key="index"
-            >
-              {{ buttonText.title }}
-            </b-button>
-          </div>
-        </div>
-      </div>
-    </b-card>
+  <div>
+    <b-table :fields="fields" :items="items" foot-clone>
+      <!-- A custom formatted data column cell -->
+      <template #cell(name)="data">
+        {{ data.value.first }} {{ data.value.last }}
+      </template>
+
+      <!-- A custom formatted header cell for field 'name' -->
+      <template #head(name)="data">
+        <span class="text-info">{{ data.label.toUpperCase() }}</span>
+      </template>
+
+      <!-- A custom formatted footer cell for field 'name' -->
+      <template #foot(name)="data">
+        <span class="text-danger">{{ data.label }}</span>
+      </template>
+
+      <!-- Default fall-back custom formatted footer cell -->
+      <template #foot()="data">
+        <i>{{ data.label }}</i>
+      </template>
+    </b-table>
   </div>
 </template>
 
 <script>
-export default {
-  name: "PREFERENCES",
-  data() {
-    return {
-      removedItems: [], // Inizializza l'array vuoto
-    };
-  },
-  computed: {
-    // Proprietà calcolate
-  },
-  methods: {
-    addMenuItem(item) {
-      // Trova l'indice dell'oggetto da rimuovere all'interno di this.items
-      const index = this.removedItems.findIndex(
-        (menuItem) => menuItem.route === item.route
-      );
-      if (index !== -1) {
-        const removedItem = this.removedItems.splice(index, 1)[0];
-        // Recupera gli elementi salvati dal localStorage e effettua il parsing
-        const savedMenuItems = JSON.parse(localStorage.getItem("items"));
-        savedMenuItems.push(removedItem);
-        // Salva l'array aggiornato nel localStorage
-        localStorage.setItem("items", JSON.stringify(savedMenuItems));
-
-        // Rimuovi l'elemento anche da removedItems nel localStorage
-        const removedItemsInLocalStorage = JSON.parse(
-          localStorage.getItem("removedItems")
-        );
-        const removedItemIndex = removedItemsInLocalStorage.findIndex(
-          (menuItem) => menuItem.route === item.route
-        );
-        if (removedItemIndex !== -1) {
-          removedItemsInLocalStorage.splice(removedItemIndex, 1);
-          localStorage.setItem(
-            "removedItems",
-            JSON.stringify(removedItemsInLocalStorage)
-          );
-        }
+  export default {
+    data() {
+      return {
+        fields: [
+          // A column that needs custom formatting
+          { key: 'name', label: 'Full Name' },
+          // A regular column
+          'age',
+          // A regular column
+          'sex'
+        ],
+        items: [
+          { name: { first: 'John', last: 'Doe' }, sex: 'Male', age: 42 },
+          { name: { first: 'Jane', last: 'Doe' }, sex: 'Female', age: 36 },
+          { name: { first: 'Rubin', last: 'Kincade' }, sex: 'Male', age: 73 },
+          { name: { first: 'Shirley', last: 'Partridge' }, sex: 'Female', age: 62 }
+        ]
       }
-    },
-  },
-  created() {},
-  mounted() {
-    const removedMenuItems = localStorage.getItem("removedItems");
-    if (removedMenuItems !== null) {
-      this.removedItems = JSON.parse(removedMenuItems);
     }
-  },
-};
+  }
 </script>
-
-<style scoped>
-</style>

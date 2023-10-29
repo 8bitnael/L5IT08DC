@@ -30,6 +30,12 @@ const routes = [
         },
     },
     {
+        path: '/preferences',
+        name: 'Preferences',
+        component: () =>
+            import('../views/Preferences.vue'),
+    },
+    {
         path: '/page1',
         name: 'Page1',
         component: () =>

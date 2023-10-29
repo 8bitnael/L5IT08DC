@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <b-card border-variant="dark" header="PREFERENCES">
+    <b-card border-variant="dark" header="DASHBOARD">
       <div class="accordion" role="tablist">
         <b-card no-body class="mb-1">
           <b-collapse
@@ -43,7 +43,6 @@
           </form>
           <!--     -->
           <pre style="text-align: left">{{ userData }}</pre>
-          
         </div>
       </div>
     </b-card>
@@ -64,10 +63,8 @@ export default {
     };
   },
   computed: {
-    // Proprietà calcolate
   },
   methods: {
-    // Metodi del componente
     retrieve() {
       console.log("retrieve " + this.storedUuid);
       const firestore = firebase.firestore();

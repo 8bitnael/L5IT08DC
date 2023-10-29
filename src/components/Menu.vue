@@ -11,6 +11,9 @@
         <b-nav-item>
           <router-link v-if="isAuthenticated" to="/dashboard">DASHBOARD</router-link>
         </b-nav-item>
+         <b-nav-item>
+          <router-link v-if="isAuthenticated" to="/preferences">PREFERENCES</router-link>
+        </b-nav-item>
         
         <!-- Dynamic Menu Items -->
         

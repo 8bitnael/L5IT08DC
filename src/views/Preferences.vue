@@ -33,7 +33,9 @@ export default {
       item.visible = true; // Riaggiungi l'elemento impostando visible su true
       this.updateUserPreferencesInLocalStorage(); // Aggiorna userPreferences in localStorage
       this.updateItemsFromLocalStorage(); // Aggiorna this.items dai dati di localStorage
-       location.reload();
+      location.reload();
+       // Utilizza $parent per accedere al componente padre
+      //this.$forceUpdate();
     },
     updateUserPreferencesInLocalStorage() {
       // Aggiorna userPreferences in localStorage

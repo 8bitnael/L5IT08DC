@@ -24,7 +24,7 @@
             </b-nav-item>
           </div>
        
-        
+      
         <button v-if="isAuthenticated" @click="logout">Logout</button>
       </b-nav>
     </div>
@@ -36,6 +36,7 @@
 import menubar from "../data/menubar.json";
 
 export default {
+  name: "Menu",
   props: {
     isAuthenticated: Boolean,
     logout: Function,
@@ -51,6 +52,9 @@ export default {
     },
   },
   methods: {
+     forceUpd() {
+      
+     },
     updateUserPreference(item) {
       // Toggle the visibility of the clicked item
       item.visible = !item.visible;
@@ -60,6 +64,7 @@ export default {
         return prefs;
       }, {});
       localStorage.setItem("userPreferences", JSON.stringify(userPreferences));
+       location.reload();
     },
   },
   created() {

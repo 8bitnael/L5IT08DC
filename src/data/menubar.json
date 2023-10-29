@@ -2,11 +2,13 @@
     "items": [
         {
             "title": "PAG_1",
-            "route": "/page1"
+            "route": "/page1",
+            "visible": true
         },
         {
             "title": "PAG_2",
-            "route": "/page2"
+            "route": "/page2",
+            "visible": true
         }
     ]
 }

@@ -36,6 +36,12 @@ const routes = [
             import('../views/Preferences.vue'),
     },
     {
+        path: '/cssdynamic',
+        name: 'CssDynamic',
+        component: () =>
+            import('../views/CssDynamic.vue'),
+    },
+    {
         path: '/page1',
         name: 'Page1',
         component: () =>

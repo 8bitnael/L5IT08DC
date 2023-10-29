@@ -14,6 +14,9 @@
          <b-nav-item>
           <router-link v-if="isAuthenticated" to="/preferences">PREFERENCES</router-link>
         </b-nav-item>
+         <b-nav-item>
+          <router-link v-if="isAuthenticated" to="/cssdynamic">Dynamic CSS</router-link>
+        </b-nav-item>
         
         <!-- Dynamic Menu Items -->
         
@@ -64,7 +67,7 @@ export default {
         return prefs;
       }, {});
       localStorage.setItem("userPreferences", JSON.stringify(userPreferences));
-       location.reload();
+      location.reload();
     },
   },
   created() {

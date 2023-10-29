@@ -2,11 +2,15 @@
   <div class="container">
     <b-card border-variant="dark" header="PREFERENCES">
       <div>
-        <h1>Removed Items</h1>
+       <b-card-body>
+          <div class="bg-secondary text-light">
+              <b-card-text>{{ text1 }}</b-card-text>
+          </div>
+        </b-card-body>
         <ul>
           <li v-for="item in invisibleItems" :key="item.route">
             {{ item.title }}
-            <button variant="success" size="sm" @click="restoreItem(item)">+</button>
+            <button variant="success" size="sm" @click="restoreItem(item)">(+) Add to menu</button>
           </li>
         </ul>
       </div>
@@ -21,6 +25,7 @@ export default {
   data() {
     return {
       items: [],
+      text1: `User will have various menu items to access different pages and they will have the option to hide/show menu items as per their preference (2.5) `,
     };
   },
   computed: {

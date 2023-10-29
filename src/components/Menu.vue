@@ -19,24 +19,21 @@
         </b-nav-item>
         
         <!-- Dynamic Menu Items -->
-        
-          <div v-for="item in visibleItems" :key="item.route">
-            <b-nav-item >
-              <router-link v-if="isAuthenticated" :to="item.route">{{ item.title }} </router-link>
-              <b-button v-if="isAuthenticated" @click="updateUserPreference(item)" v-model="item.visible" variant="danger" size="sm">X</b-button>
-            </b-nav-item>
-          </div>
+        <b-nav-item>
+          <router-link v-if="isAuthenticated && isPage1Visible"   to="/page1">PAGE1</router-link>
+        </b-nav-item>
+         
        
       
         <button v-if="isAuthenticated" @click="logout">Logout</button>
       </b-nav>
     </div>
-    <router-view />
+    <router-view  @update-page1-visibility="isPage1Visible = $event"/>
   </div>
 </template>
 
 <script>
-import menubar from "../data/menubar.json";
+ 
 
 export default {
   name: "Menu",
@@ -46,37 +43,21 @@ export default {
   },
   data() {
     return {
-      items: menubar.items,
+        isPage1Visible: true,
     };
   },
   computed: {
-    visibleItems() {
-      return this.items.filter((item) => item.visible);
-    },
+    
   },
   methods: {
-     forceUpd() {
-      
-     },
-    updateUserPreference(item) {
-      // Toggle the visibility of the clicked item
-      item.visible = !item.visible;
-      // Update user preferences in localStorage
-      const userPreferences = this.items.reduce((prefs, item) => {
-        prefs[item.route] = item.visible;
-        return prefs;
-      }, {});
-      localStorage.setItem("userPreferences", JSON.stringify(userPreferences));
-      location.reload();
+    updatePage1Visibility(value) {
+      console.log("3");
+      this.isPage1Visible = value;
     },
   },
   created() {
-    const userPreferences = JSON.parse(localStorage.getItem("userPreferences")) || {};
-    // Initialize the items based on user preferences in localStorage
-    this.items = menubar.items.map((item) => ({
-      ...item,
-      visible: userPreferences[item.route] !== false,
-    }));
+    console.log("2");
+    this.$on("update-page1-visibility", this.updatePage1Visibility);
   },
 };
 </script>

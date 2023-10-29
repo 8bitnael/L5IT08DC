@@ -15,7 +15,7 @@
           <router-link v-if="isAuthenticated" to="/preferences">PREFERENCES</router-link>
         </b-nav-item>
          <b-nav-item>
-          <router-link v-if="isAuthenticated" to="/cssdynamic">Dynamic CSS</router-link>
+          <router-link v-if="isAuthenticated" to="/cssdynamic">DYNAMIC CSS</router-link>
         </b-nav-item>
         
         <!-- Dynamic Menu Items -->

@@ -4,33 +4,32 @@
 
     <!-- Esempio 1: Stile dinamico basato su una condizione -->
     <div :style="{ color: isRed ? 'red' : 'blue' }">
-      Questo testo cambia colore in base a "isRed"
+      This text changes color based on "isRed"
     </div>
-    <button @click="toggleColor">Cambia colore</button>
+    <button @click="toggleColor">Change colour</button>
 
     <!-- Esempio 2: Stile dinamico con classi condizionali -->
     <div :class="{ active: isActive, disabled: isDisabled }">
-      Questo elemento ha classi condizionali
+      This element has conditional classes
     </div>
-    <button @click="toggleClasses">Cambia classi</button>
+    <button @click="toggleClasses">Change classes</button>
 
     <!-- Esempio 3: Stile dinamico basato su dati del componente -->
-    <div :style="customStyle">
-      Questo elemento ha uno stile personalizzato
+    <div :style="customStyle">This element has a custom style</div>
+    <button @click="changeCustomStyle">Change custom style</button>
+
+    <div>
+      <h1>Change the Background Color</h1>
+      <div :style="{ backgroundColor: backgroundColor }">
+        This is a div with a dynamic background
+      </div>
+      <input
+        type="color"
+        v-model="backgroundColor"
+        @input="changeBackgroundColor"
+      />
     </div>
-    <button @click="changeCustomStyle">Cambia stile personalizzato</button>
-
-
-
-      <div>
-    <h1>Cambia il Colore di Sfondo</h1>
-    <div :style="{ backgroundColor: backgroundColor }">
-      Questo è un div con uno sfondo dinamico
-    </div>
-    <input type="color" v-model="backgroundColor" @input="changeBackgroundColor" />
   </div>
-  </div>
-  
 </template>
 
 <script>
@@ -40,11 +39,11 @@ export default {
       isRed: true,
       isActive: false,
       isDisabled: true,
-      backgroundColor: '#ff0000', // Colore di sfondo iniziale (rosso)
+      backgroundColor: "#ff0000", // Colore di sfondo iniziale (rosso)
       customStyle: {
-        backgroundColor: 'yellow',
-        fontSize: '20px',
-        padding: '10px',
+        backgroundColor: "yellow",
+        fontSize: "20px",
+        padding: "10px",
       },
     };
   },
@@ -58,13 +57,13 @@ export default {
     },
     changeCustomStyle() {
       this.customStyle = {
-        backgroundColor: 'green',
-        color: 'white',
-        fontSize: '24px',
-        padding: '12px',
+        backgroundColor: "green",
+        color: "white",
+        fontSize: "24px",
+        padding: "12px",
       };
     },
-     changeBackgroundColor() {
+    changeBackgroundColor() {
       // Questo metodo verrà chiamato quando l'utente seleziona un nuovo colore
       // dal selettore di colore
     },

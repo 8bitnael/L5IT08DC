@@ -22,12 +22,15 @@
         <b-nav-item>
           <router-link v-if="isAuthenticated && isPage1Visible"   to="/page1">PAGE1</router-link>
         </b-nav-item>
+         <b-nav-item>
+          <router-link v-if="isAuthenticated && isPage2Visible"   to="/page2">PAGE2</router-link>
+        </b-nav-item>
        
       
         <button v-if="isAuthenticated" @click="logout">Logout</button>
       </b-nav>
     </div>
-    <router-view  @update-page1-visibility="isPage1Visible = $event"/>
+    <router-view @update-page-visibility="updatePageVisibility" />
   </div>
 </template>
 
@@ -43,15 +46,16 @@ export default {
   data() {
     return {
         isPage1Visible: true,
+        isPage2Visible: true,
     };
   },
   computed: {
     
   },
   methods: {
-    updatePage1Visibility(value) {
-      console.log("3");
-      this.isPage1Visible = value;
+    updatePageVisibility(isPage1Visible, isPage2Visible) {
+      this.isPage1Visible = isPage1Visible;
+      this.isPage2Visible = isPage2Visible;
     },
   },
   created() {

@@ -22,7 +22,6 @@
         <b-nav-item>
           <router-link v-if="isAuthenticated && isPage1Visible"   to="/page1">PAGE1</router-link>
         </b-nav-item>
-         
        
       
         <button v-if="isAuthenticated" @click="logout">Logout</button>

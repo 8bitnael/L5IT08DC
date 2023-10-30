@@ -6,7 +6,7 @@
       <!-- ... il resto del tuo codice ... -->
       <div class="form-check">
          <input type="checkbox" id="page1Checkbox" v-model="isPage1Visible" @change="updatePage1Visibility" />
-        <label for="page1Checkbox">Show PAGE1</label>
+         <label for="page1Checkbox">Show PAGE1</label>
       </div>
     </b-card>
   </div>
@@ -29,7 +29,6 @@ export default {
   },
   methods: {
     updatePage1Visibility() {
-      console.log("1");
       this.$emit("update-page1-visibility", this.isPage1Visible);
     },
   },
